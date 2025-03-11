@@ -18,7 +18,7 @@ public class EnrollmentController {
     @Autowired
     private EnrollmentService enrollmentService;
 
-    @GetMapping("/enroll2")
+    @GetMapping("/enroll")
     @ResponseBody
     public String test(){
         enrollmentService.enrollStudent(1,1);
