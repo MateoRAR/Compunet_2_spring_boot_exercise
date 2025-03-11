@@ -1,30 +1,38 @@
-INSERT INTO students(id, code, name, program) VALUES (1, 'A00001', 'John Doe', 'CS');
-INSERT INTO students(id, code, name, program) VALUES (2, 'A00002', 'Jane Smith', 'IT');
-INSERT INTO students(id, code, name, program) VALUES (3, 'A00003', 'Michael Johnson', 'CS');
-INSERT INTO students(id, code, name, program) VALUES (4, 'A00004', 'Emily Davis', 'SE');
-INSERT INTO students(id, code, name, program) VALUES (5, 'A00005', 'Daniel Brown', 'CS');
-INSERT INTO students(id, code, name, program) VALUES (6, 'A00006', 'Sophia Wilson', 'IT');
-INSERT INTO students(id, code, name, program) VALUES (7, 'A00007', 'David Martinez', 'CS');
-INSERT INTO students(id, code, name, program) VALUES (8, 'A00008', 'Olivia Anderson', 'SE');
-INSERT INTO students(id, code, name, program) VALUES (9, 'A00009', 'James Taylor', 'IT');
-INSERT INTO students(id, code, name, program) VALUES (10, 'A00010', 'Charlotte Thomas', 'CS');
-INSERT INTO students(id, code, name, program) VALUES (11, 'A00011', 'William Hernandez', 'IT');
-INSERT INTO students(id, code, name, program) VALUES (12, 'A00012', 'Amelia Moore', 'SE');
-INSERT INTO students(id, code, name, program) VALUES (13, 'A00013', 'Ethan White', 'CS');
-INSERT INTO students(id, code, name, program) VALUES (14, 'A00014', 'Mia Lewis', 'IT');
-INSERT INTO students(id, code, name, program) VALUES (15, 'A00015', 'Alexander Clark', 'CS');
-INSERT INTO students(id, code, name, program) VALUES (16, 'A00016', 'Isabella Walker', 'SE');
-INSERT INTO students(id, code, name, program) VALUES (17, 'A00017', 'Benjamin Hall', 'CS');
-INSERT INTO students(id, code, name, program) VALUES (18, 'A00018', 'Sofia Allen', 'IT');
-INSERT INTO students(id, code, name, program) VALUES (19, 'A00019', 'Lucas Young', 'CS');
-INSERT INTO students(id, code, name, program) VALUES (20, 'A00020', 'Harper King', 'SE');
-INSERT INTO professors(id, name) VALUES (1, 'Gabriel Tamura');
-INSERT INTO professors(id, name) VALUES (2, 'Ángela Villota');
-INSERT INTO professors(id, name) VALUES (3, 'Andrés Aristizábal');
-INSERT INTO professors(id, name) VALUES (4, 'Rocío Segovia');
-INSERT INTO professors(id, name) VALUES (5, 'Claudia Castiblanco');
-INSERT INTO courses(id, name, professor_id) VALUES (1, 'Ingeniería de Software IV', 1);
-INSERT INTO courses(id, name, professor_id) VALUES (2, 'Computación y estructuras discretas III', 2);
-INSERT INTO courses(id, name, professor_id) VALUES (3, 'Computación y estructuras discretas II', 3);
-INSERT INTO courses(id, name, professor_id) VALUES (4, 'Ingeniería de Software III', 4);
-INSERT INTO courses(id, name, professor_id) VALUES (5, 'Proyecto Integrador I', 5);
+-- Insertar estudiantes
+INSERT INTO domi_students (id, code, name, program)
+VALUES (1, 'A00001', 'Juan Pérez', 'SIS'),
+       (2, 'A00002', 'María Gómez', 'SIS'),
+       (3, 'A00003', 'Miguel Rodríguez', 'TEL'),
+       (4, 'A00004', 'Lucía Fernández', 'DMI'),
+       (5, 'A00005', 'Daniela Ramírez', 'TEL'),
+       (6, 'A00006', 'Santiago Morales', 'SIS'),
+       (7, 'A00007', 'Valentina Castro', 'DMI'),
+       (8, 'A00008', 'Carlos Méndez', 'SIS'),
+       (9, 'A00009', 'Javier Ortega', 'IBQ'),
+       (10, 'A00010', 'Camila Rojas', 'MED'),
+       (11, 'A00011', 'Andrés Herrera', 'ENI'),
+       (12, 'A00012', 'Natalia Vargas', 'IBQ'),
+       (13, 'A00013', 'Emiliano Suárez', 'SIS'),
+       (14, 'A00014', 'Sofía León', 'TEL'),
+       (15, 'A00015', 'Alejandro Pineda', 'IND'),
+       (16, 'A00016', 'Isabela Cárdenas', 'PSI'),
+       (17, 'A00017', 'Mateo Torres', 'DIS'),
+       (18, 'A00018', 'Gabriela Mendoza', 'TEL'),
+       (19, 'A00019', 'Luis Álvarez', 'DIS'),
+       (20, 'A00020', 'Fernanda Espinosa', 'ENI');
+
+-- Insertar profesores
+INSERT INTO domi_professors (id, name)
+VALUES (1, 'Gabriel Tamura'),
+       (2, 'Ángela Villota'),
+       (3, 'Andrés Aristizábal'),
+       (4, 'Rocío Segovia'),
+       (5, 'Claudia Castiblanco');
+
+-- Insertar cursos
+INSERT INTO domi_courses (id, name, professor_id)
+VALUES (1, 'Ingeniería de Software IV', 1),
+       (2, 'Computación y estructuras discretas III', 2),
+       (3, 'Computación y estructuras discretas II', 3),
+       (4, 'Ingeniería de Software III', 4),
+       (5, 'Proyecto Integrador I', 5);

@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "professors")
+@Table(name = "domi_professors")
 public class Professor {
 
     @Id

@@ -3,8 +3,10 @@ package co.edu.icesi.introspringboot2.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
-@Table(name = "courses")
+@Table(name = "domi_courses")
 public class Course {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -17,7 +19,18 @@ public class Course {
     @JoinColumn(name = "professor_id")
     Professor professor;
 
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
+    private List<Enrollment> enrollments;
+
     public Course() {
+    }
+
+    public List<Enrollment> getEnrollments() {
+        return enrollments;
+    }
+
+    public void setEnrollments(List<Enrollment> enrollments) {
+        this.enrollments = enrollments;
     }
 
     public long getId() {

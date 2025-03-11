@@ -1,10 +1,9 @@
 package co.edu.icesi.introspringboot2.repository;
 
+import co.edu.icesi.introspringboot2.entity.Enrollment;
 import co.edu.icesi.introspringboot2.entity.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
-import java.util.List;
-import java.util.Optional;
 
-public interface StudentRepository extends JpaRepository<Student, Long> {
+public interface EnrollmentRepository extends JpaRepository<Enrollment, Long> {
 
 }
