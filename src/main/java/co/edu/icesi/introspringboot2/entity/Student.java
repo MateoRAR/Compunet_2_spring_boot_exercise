@@ -7,11 +7,12 @@ import java.util.List;
 
 //POJOs
 @Entity
-@Table(name = "domi_students")
+@Table(name = "students")
 public class Student {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "students_seq")
+    @SequenceGenerator(name = "students_seq", sequenceName = "students_id_seq", allocationSize = 1)
     private long id;
 
     private String name;
@@ -19,6 +20,7 @@ public class Student {
     private String program;
 
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Enrollment> enrollments;
 
     public Student() {}

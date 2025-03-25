@@ -6,6 +6,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 public interface StudentService {
-    void createStudent(Student student);
-    List<Student > getAllStudents();
+    Student createStudent(Student student);
+    List<Student> getAllStudents();
+    List<Student> findByProgram(String program);
+    List<Student> getStudentsByProgram(String Program);
+
+    Student findByCode(String code);
 }

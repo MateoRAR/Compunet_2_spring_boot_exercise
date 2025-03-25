@@ -1,15 +1,17 @@
 package co.edu.icesi.introspringboot2.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
 
 @Entity
-@Table(name = "domi_courses")
+@Table(name = "courses")
 public class Course {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "courses_seq")
+    @SequenceGenerator(name = "courses_seq", sequenceName = "courses_id_seq", allocationSize = 1)
     private long id;
 
     private String name;
@@ -20,6 +22,7 @@ public class Course {
     Professor professor;
 
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Enrollment> enrollments;
 
     public Course() {
@@ -31,6 +34,9 @@ public class Course {
 
     public void setEnrollments(List<Enrollment> enrollments) {
         this.enrollments = enrollments;
+    }
+    public void addEnrollment(Enrollment enrollment) {
+        enrollments.add(enrollment);
     }
 
     public long getId() {

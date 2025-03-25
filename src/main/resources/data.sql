@@ -1,38 +1,65 @@
--- Insertar estudiantes
-INSERT INTO domi_students (id, code, name, program)
-VALUES (1, 'A00001', 'Juan Pérez', 'SIS'),
-       (2, 'A00002', 'María Gómez', 'SIS'),
-       (3, 'A00003', 'Miguel Rodríguez', 'TEL'),
-       (4, 'A00004', 'Lucía Fernández', 'DMI'),
-       (5, 'A00005', 'Daniela Ramírez', 'TEL'),
-       (6, 'A00006', 'Santiago Morales', 'SIS'),
-       (7, 'A00007', 'Valentina Castro', 'DMI'),
-       (8, 'A00008', 'Carlos Méndez', 'SIS'),
-       (9, 'A00009', 'Javier Ortega', 'IBQ'),
-       (10, 'A00010', 'Camila Rojas', 'MED'),
-       (11, 'A00011', 'Andrés Herrera', 'ENI'),
-       (12, 'A00012', 'Natalia Vargas', 'IBQ'),
-       (13, 'A00013', 'Emiliano Suárez', 'SIS'),
-       (14, 'A00014', 'Sofía León', 'TEL'),
-       (15, 'A00015', 'Alejandro Pineda', 'IND'),
-       (16, 'A00016', 'Isabela Cárdenas', 'PSI'),
-       (17, 'A00017', 'Mateo Torres', 'DIS'),
-       (18, 'A00018', 'Gabriela Mendoza', 'TEL'),
-       (19, 'A00019', 'Luis Álvarez', 'DIS'),
-       (20, 'A00020', 'Fernanda Espinosa', 'ENI');
+ALTER TABLE students ALTER COLUMN id SET DEFAULT nextval('students_id_seq');
+ALTER TABLE professors ALTER COLUMN id SET DEFAULT nextval('professors_id_seq');
+ALTER TABLE courses ALTER COLUMN id SET DEFAULT nextval('courses_id_seq');
+ALTER TABLE enrollments ALTER COLUMN id SET DEFAULT nextval('enrollments_id_seq');
 
--- Insertar profesores
-INSERT INTO domi_professors (id, name)
-VALUES (1, 'Gabriel Tamura'),
-       (2, 'Ángela Villota'),
-       (3, 'Andrés Aristizábal'),
-       (4, 'Rocío Segovia'),
-       (5, 'Claudia Castiblanco');
 
--- Insertar cursos
-INSERT INTO domi_courses (id, name, professor_id)
-VALUES (1, 'Ingeniería de Software IV', 1),
-       (2, 'Computación y estructuras discretas III', 2),
-       (3, 'Computación y estructuras discretas II', 3),
-       (4, 'Ingeniería de Software III', 4),
-       (5, 'Proyecto Integrador I', 5);
+
+
+-- Insertar estudiantes sin especificar ID
+INSERT INTO students (code, name, program)
+VALUES ('A00001', 'Juan Pérez', 'SIS'),
+       ('A00002', 'María Gómez', 'SIS'),
+       ('A00003', 'Miguel Rodríguez', 'TEL'),
+       ('A00004', 'Lucía Fernández', 'DMI'),
+       ('A00005', 'Daniela Ramírez', 'TEL'),
+       ('A00006', 'Santiago Morales', 'SIS'),
+       ('A00007', 'Valentina Castro', 'DMI'),
+       ('A00008', 'Carlos Méndez', 'SIS'),
+       ('A00009', 'Javier Ortega', 'IBQ'),
+       ('A00010', 'Camila Rojas', 'MED'),
+       ('A00011', 'Andrés Herrera', 'ENI'),
+       ('A00012', 'Natalia Vargas', 'IBQ'),
+       ('A00013', 'Emiliano Suárez', 'SIS'),
+       ('A00014', 'Sofía León', 'TEL'),
+       ('A00015', 'Alejandro Pineda', 'IND'),
+       ('A00016', 'Isabela Cárdenas', 'PSI'),
+       ('A00017', 'Mateo Torres', 'DIS'),
+       ('A00018', 'Gabriela Mendoza', 'TEL'),
+       ('A00019', 'Luis Álvarez', 'DIS'),
+       ('A00020', 'Fernanda Espinosa', 'ENI');
+
+-- Insertar profesores sin especificar ID
+INSERT INTO professors (name)
+VALUES ('Gabriel Tamura'),
+       ('Ángela Villota'),
+       ('Andrés Aristizábal'),
+       ('Rocío Segovia'),
+       ('Claudia Castiblanco');
+
+-- Insertar cursos sin especificar ID
+INSERT INTO courses (name, professor_id)
+VALUES ('Ingeniería de Software IV', 1),
+       ('Computación y estructuras discretas III', 2),
+       ('Computación y estructuras discretas II', 3),
+       ('Ingeniería de Software III', 4),
+       ('Proyecto Integrador I', 5);
+
+-- Insertar matrículas sin especificar ID
+INSERT INTO enrollments (student_id, course_id)
+VALUES
+    -- Ingeniería de Software IV
+    (1, 1), (2, 1), (6, 1), (8, 1), (13, 1),
+
+    -- Computación y estructuras discretas III
+    (1, 2), (2, 2), (3, 2), (6, 2), (14, 2),
+
+    -- Computación y estructuras discretas II
+    (3, 3), (5, 3), (10, 3), (12, 3), (18, 3),
+
+    -- Ingeniería de Software III
+    (1, 4), (4, 4), (6, 4), (9, 4), (13, 4),
+
+    -- Proyecto Integrador I
+    (7, 5), (8, 5), (11, 5), (15, 5), (20, 5);
+

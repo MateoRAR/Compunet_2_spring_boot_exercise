@@ -1,0 +1,33 @@
+<!doctype html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h1 th:text="${greeting}">Hello World</h1>
+
+<ul>
+    <li th:each="student : ${students}">
+        <span th:text="${student.name}">Name</span>
+        <span th:text="${student.code}">Code</span>
+        <span th:text="${student.program}">Program</span>
+    </li>
+</ul>
+
+    <form th:action="@{/student}" method="post" th:object="${student}">
+        <label for="name">Name:</label>
+        <input th:field="*{name}" type="text" id="name" name="name" required>
+        <br>
+        <label for="code">Code:</label>
+        <input th:field="*{code}" type="text" id="code" name="code" required>
+        <br>
+        <label for="program">Program:</label>
+        <input th:field="*{program}" type="text" id="program" name="program" required>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

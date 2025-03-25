@@ -4,11 +4,12 @@ package co.edu.icesi.introspringboot2.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "domi_enrollments")
+@Table(name = "enrollments")
 public class Enrollment {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "enrollments_seq")
+    @SequenceGenerator(name = "enrollments_seq", sequenceName = "enrollments_id_seq", allocationSize = 1)
     private long id;
 
     @ManyToOne

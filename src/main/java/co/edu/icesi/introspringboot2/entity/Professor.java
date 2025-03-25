@@ -1,20 +1,23 @@
 package co.edu.icesi.introspringboot2.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
 
 @Entity
-@Table(name = "domi_professors")
+@Table(name = "professors")
 public class Professor {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "professors_seq")
+    @SequenceGenerator(name = "professors_seq", sequenceName = "professors_id_seq", allocationSize = 1)
     private long id;
 
     private String name;
 
-    @OneToMany(mappedBy = "professor") //Nombre de la propiedad en la otra clase
+    @OneToMany(mappedBy = "professor")
+    @JsonIgnore
     private List<Course> courseList;
 
     public Professor() {
