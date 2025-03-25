@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professors List</title>
+    <link rel="stylesheet" th:href="@{/css/professor.css}" />
+</head>
+<body>
+<div class="container">
+    <h1 class="title">Professors List</h1>
+    <ul class="professor-list">
+        <li th:each="professor : ${professors}">
+            <a th:href="@{/professor/details/{id}(id=${professor.id})}" th:text="${professor.name}">Professor Name</a>
+        </li>
+    </ul>
+    <a class="back-button" href="/">Back to Home</a>
+</div>
+</body>
+</html>

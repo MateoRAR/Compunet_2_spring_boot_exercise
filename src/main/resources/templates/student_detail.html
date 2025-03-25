@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Student Detail</title>
+    <link rel="stylesheet" th:href="@{/css/student.css}" />
+</head>
+<body>
+
+<div class="container">
+    <div class="student-card">
+        <h1 class="title">Student Detail</h1>
+    </div>
+
+    <div class="student-info">
+        <p><strong>Name:</strong> <span th:text="${student.name}">Name</span></p>
+        <p><strong>Code:</strong> <span th:text="${student.code}">Code</span></p>
+        <p><strong>Program:</strong> <span th:text="${student.program}">Program</span></p>
+    </div>
+
+    <h2 class="subtitle">Courses Enrolled</h2>
+
+    <div class="courses-container">
+        <div class="course-bar" th:each="course : ${student_courses}">
+            <span class="course-name" th:text="${course.name}">Course Name</span>
+            <span class="course-professor" th:text="${course.professor.getName()}">Professor Name</span>
+        </div>
+    </div>
+
+    <a href="/student" class="back-button">Back</a>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professor Details</title>
+    <link rel="stylesheet" th:href="@{/css/professor.css}" />
+</head>
+<body>
+<div class="container">
+    <h1 class="title" th:text="${professor.name}">Professor Name</h1>
+
+    <h2 class="subtitle">Courses Taught</h2>
+    <ul class="course-list">
+        <li th:each="course : ${professorCourses}">
+            <a th:href="@{/course/details/{id}(id=${course.id})}" th:text="${course.name}">Course Name</a>
+        </li>
+    </ul>
+
+    <a class="back-button" href="/professor">Back to Professors</a>
+</div>
+</body>
+</html>

@@ -5,6 +5,8 @@ import co.edu.icesi.introspringboot2.repository.ProfessorRepository;
 import co.edu.icesi.introspringboot2.service.ProfessorService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ProfessorServiceImpl implements ProfessorService {
 
@@ -18,5 +20,10 @@ public class ProfessorServiceImpl implements ProfessorService {
     @Override
     public void deleteAll() {
         professorRepository.deleteAll();
+    }
+
+    @Override
+    public List<Professor> getAllProfessors() {
+        return professorRepository.findAll();
     }
 }

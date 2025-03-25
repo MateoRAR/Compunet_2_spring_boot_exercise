@@ -38,14 +38,22 @@ public class EnrollmentServiceImpl implements EnrollmentService {
     }
 
     @Override
-    public List<Student> getStudentsByCourse(String name){
+    public List<Student> findByCourse(String name) {
         Course course = courseService.findByName(name);
-        return enrollmentRepository.getStudentsByCourse(course);
+        List<Student> students = new java.util.ArrayList<>(List.of());
+        for (Enrollment enrollment : enrollmentRepository.findByCourse(course)) {
+            students.add(enrollment.getStudent());
+        }
+        return students;
     }
 
     @Override
-    public List<Course> getCoursesByStudent(String code){
+    public List<Course> findByStudent(String code){
         Student student = studentService.findByCode(code);
-        return enrollmentRepository.getCoursesByStudent(student);
+        List<Course> courses = new java.util.ArrayList<>(List.of());
+        for (Enrollment enrollment : enrollmentRepository.findByStudent(student)) {
+            courses.add(enrollment.getCourse());
+        }
+        return courses;
     }
 }

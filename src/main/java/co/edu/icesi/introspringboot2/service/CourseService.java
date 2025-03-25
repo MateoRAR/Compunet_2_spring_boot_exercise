@@ -1,6 +1,7 @@
 package co.edu.icesi.introspringboot2.service;
 
 import co.edu.icesi.introspringboot2.entity.Course;
+import co.edu.icesi.introspringboot2.entity.Student;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,11 +14,11 @@ public interface CourseService {
 
     List<Course> getAllCourses();
 
-    Course getCourseById(long l);
-
     void deleteCourse(long courseId);
 
     void deleteAll();
 
     Course findByName(String name);
+
+    Course findById(long id);
 }

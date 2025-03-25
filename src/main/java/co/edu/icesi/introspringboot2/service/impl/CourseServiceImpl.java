@@ -14,6 +14,8 @@ import java.util.Optional;
 @Service
 public class CourseServiceImpl implements CourseService {
 
+
+
     @Autowired
     private CourseRepository courseRepository;
 
@@ -42,7 +44,7 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public Course getCourseById(long id) {
+    public Course findById(long id) {
         Optional<Course> optCourse = courseRepository.findById(id);
         if(optCourse.isPresent()){
             return optCourse.get();

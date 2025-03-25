@@ -1,0 +1,106 @@
+/* General */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f0ff;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Contenedor principal */
+.container {
+    max-width: 700px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Títulos */
+.title {
+    text-align: center;
+    color: #6a0dad;
+}
+
+.subtitle {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: 20px;
+    color: #8a2be2;
+}
+
+/* Lista de cursos */
+.course-list {
+    list-style: none;
+    padding: 0;
+}
+
+.course-list li {
+    background: #e6ccff;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Links de cursos */
+.course-list li a {
+    text-decoration: none;
+    color: #6a0dad;
+    font-weight: bold;
+}
+
+.course-list li a:hover {
+    color: #8a2be2;
+}
+
+/* Tarjeta de curso */
+.course-card {
+    background: #6a0dad;
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* Información del profesor */
+.professor {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #d8bfff;
+}
+
+/* Lista de estudiantes */
+.student-list {
+    list-style: none;
+    padding: 0;
+}
+
+.student-list li {
+    background: #e6ccff;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Botón de regreso */
+.back-button {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px;
+    background: #8a2be2;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.back-button:hover {
+    background: #6a0dad;
+}

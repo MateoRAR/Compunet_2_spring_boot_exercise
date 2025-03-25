@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Detail</title>
+    <link rel="stylesheet" th:href="@{/css/course.css}" />
+</head>
+<body>
+<div class="container">
+    <div class="course-card">
+        <h1 th:text="${course.name}">Course Name</h1>
+        <p class="professor">
+            Professor:
+            <a th:href="@{/professor/details/{id}(id=${course.professor.id})}"
+               th:text="${course.professor.getName()}">Professor Name</a>
+        </p>
+    </div>
+
+    <h2 class="subtitle">Enrolled Students</h2>
+    <ul class="student-list">
+        <li th:each="student : ${students}">
+            <span th:text="${student.name}">Student Name</span>
+            <span th:text="${student.code}">Code</span>
+        </li>
+    </ul>
+
+    <a href="/course" class="back-button">Back to Courses</a>
+</div>
+</body>
+</html>
