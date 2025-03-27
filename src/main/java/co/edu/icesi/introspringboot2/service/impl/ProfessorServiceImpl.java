@@ -10,7 +10,6 @@ import java.util.List;
 
 @Service
 public class ProfessorServiceImpl implements ProfessorService {
-
     @Autowired
     private ProfessorRepository professorRepository;
 

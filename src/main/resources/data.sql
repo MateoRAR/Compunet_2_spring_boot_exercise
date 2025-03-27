@@ -2,8 +2,11 @@ ALTER TABLE students ALTER COLUMN id SET DEFAULT nextval('students_id_seq');
 ALTER TABLE professors ALTER COLUMN id SET DEFAULT nextval('professors_id_seq');
 ALTER TABLE courses ALTER COLUMN id SET DEFAULT nextval('courses_id_seq');
 ALTER TABLE enrollments ALTER COLUMN id SET DEFAULT nextval('enrollments_id_seq');
+SELECT setval('csbe_users_seq', (SELECT MAX(id) FROM csbe_users));
 
 
+INSERT INTO csbe_users (id, email, password, username)
+VALUES (1,'pengu@edu.co','1212', 'alfa');
 
 
 -- Insertar estudiantes sin especificar ID
@@ -62,4 +65,3 @@ VALUES
 
     -- Proyecto Integrador I
     (7, 5), (8, 5), (11, 5), (15, 5), (20, 5);
-
