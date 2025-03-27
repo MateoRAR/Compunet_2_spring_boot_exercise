@@ -5,6 +5,7 @@ import co.edu.icesi.introspringboot2.entity.Enrollment;
 import co.edu.icesi.introspringboot2.repository.CourseRepository;
 import co.edu.icesi.introspringboot2.repository.EnrollmentRepository;
 import co.edu.icesi.introspringboot2.service.CourseService;
+import co.edu.icesi.introspringboot2.service.ProfessorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,9 @@ public class CourseServiceImpl implements CourseService {
 
     @Autowired
     private CourseRepository courseRepository;
+
+    @Autowired
+    private ProfessorService professorService;
 
     @Override
     public Course createCourse(Course course) {
@@ -53,6 +57,11 @@ public class CourseServiceImpl implements CourseService {
         }
 
         // return courseRepository.findById(id).orElseThrow(() -> new RuntimeException("Course not found" + id));
+    }
+
+    @Override
+    public List<Course> findByProfessorId(Long id) {
+        return courseRepository.findByProfessor(professorService.findById(id));
     }
 
     @Override

@@ -27,7 +27,7 @@ public class ProfessorController {
     @GetMapping
     public String listProfessors(Model model) {
         model.addAttribute("professors", professorService.getAllProfessors());
-        return "professor_list";
+        return "professor_tp";
     }
 
     // Detalles de un profesor específico

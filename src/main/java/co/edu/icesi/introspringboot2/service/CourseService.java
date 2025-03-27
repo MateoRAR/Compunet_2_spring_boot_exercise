@@ -21,4 +21,6 @@ public interface CourseService {
     Course findByName(String name);
 
     Course findById(long id);
+
+    List<Course> findByProfessorId(Long id);
 }

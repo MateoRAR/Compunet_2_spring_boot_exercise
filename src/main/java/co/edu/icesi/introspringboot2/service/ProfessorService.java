@@ -10,4 +10,6 @@ public interface ProfessorService {
     void deleteAll();
 
     List<Professor> getAllProfessors();
+
+    Professor findById(Long id);
 }
