@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management System</title>
+    <link rel="stylesheet" th:href="@{/css/home.css}" />
+</head>
+<body>
+<header>
+    <h1>Welcome to the Student Management System</h1>
+
+    <form method="post" th:action="@{/logout}">
+        <button>LogOut</button>
+    </form>
+</header>
+
+<main>
+    <div class="menu">
+        <a href="/enroll" class="menu-item">Enrollments</a>
+        <a href="/student" class="menu-item">Students</a>
+        <a href="/professor" class="menu-item">Professors</a>
+        <a href="/course" class="menu-item">Courses</a>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2025 Student Management System</p>
+</footer>
+</body>
+</html>

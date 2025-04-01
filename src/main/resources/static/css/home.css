@@ -1,0 +1,47 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4f4f9;
+    text-align: center;
+}
+
+/* Header */
+header {
+    background: #0073e6;
+    color: white;
+    padding: 20px;
+    font-size: 24px;
+}
+
+/* Menu */
+.menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.menu-item {
+    text-decoration: none;
+    background: #005bb5;
+    color: white;
+    padding: 15px 30px;
+    margin: 10px;
+    border-radius: 5px;
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+.menu-item:hover {
+    background: #004494;
+}
+
+/* Footer */
+footer {
+    margin-top: 50px;
+    background: #ddd;
+    padding: 10px;
+    font-size: 14px;
+}

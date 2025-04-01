@@ -1,5 +1,6 @@
 package co.edu.icesi.introspringboot2.entity;
 
+import java.util.List;
 import jakarta.persistence.*;
 
 @Entity
@@ -14,6 +15,13 @@ public class User {
     private String password;
     private String username;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private List<Role> roles;
 
     public User() {
     }
@@ -22,6 +30,14 @@ public class User {
         this.email = email;
         this.password = password;
         this.username = username;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 
     public void setEmail(String email) {

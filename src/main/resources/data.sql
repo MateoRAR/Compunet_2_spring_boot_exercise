@@ -3,10 +3,24 @@ ALTER TABLE professors ALTER COLUMN id SET DEFAULT nextval('professors_id_seq');
 ALTER TABLE courses ALTER COLUMN id SET DEFAULT nextval('courses_id_seq');
 ALTER TABLE enrollments ALTER COLUMN id SET DEFAULT nextval('enrollments_id_seq');
 SELECT setval('csbe_users_seq', (SELECT MAX(id) FROM csbe_users));
-
+SELECT setval('csbe_roles_seq', (SELECT MAX(id) FROM csbe_roles));
 
 INSERT INTO csbe_users (id, email, password, username)
-VALUES (1,'pengu@edu.co','1212', 'alfa');
+VALUES (1, 'pengu@edu.co', '$2a$12$LE5wWF2zJKLfE98E4KgJPO.buVfS0xHlSg2F2ciQMnk5kdgEBx506', 'alfa'),
+       (2, 'estudiante@gmail.com', '$2a$12$LE5wWF2zJKLfE98E4KgJPO.buVfS0xHlSg2F2ciQMnk5kdgEBx506', 'tuden'),
+       (3, 'profesor@gmail.com', '$2a$12$LE5wWF2zJKLfE98E4KgJPO.buVfS0xHlSg2F2ciQMnk5kdgEBx506', 'ticher');
+
+-- Insertar roles
+INSERT INTO csbe_roles (id, name)
+VALUES (1, 'ROLE_STUDENT'),
+       (2, 'ROLE_PROFESSOR');
+
+-- Definir relaciones
+INSERT INTO user_roles (user_id, role_id)
+VALUES (2, 1),
+       (3, 2);
+
+
 
 
 -- Insertar estudiantes sin especificar ID
