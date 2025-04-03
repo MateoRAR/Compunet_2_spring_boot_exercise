@@ -17,6 +17,8 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class WebSecurityConfig {
 
+
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -27,6 +29,7 @@ public class WebSecurityConfig {
         http
                 .authorizeHttpRequests(
                         auth -> auth
+                                .requestMatchers("/css/**").permitAll()
                                 .requestMatchers("/sign_up").permitAll()
                                 .requestMatchers("/course").hasAnyRole("STUDENT", "PROFESOR")
                                 .requestMatchers("/student").hasAnyRole("PROFESSOR")
