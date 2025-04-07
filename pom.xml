@@ -10,6 +10,7 @@
     </parent>
     <groupId>co.edu.icesi</groupId>
     <artifactId>IntroSpringboot2</artifactId>
+    <packaging>war</packaging>
     <version>0.0.1-SNAPSHOT</version>
     <name>IntroSpringboot2</name>
     <description>IntroSpringboot2</description>
