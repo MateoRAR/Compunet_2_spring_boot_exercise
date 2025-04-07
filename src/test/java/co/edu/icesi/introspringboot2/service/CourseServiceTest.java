@@ -76,7 +76,7 @@ public class CourseServiceTest {
         when(courseRepository.findById(1L)).thenReturn(Optional.of(course));
 
         // Act
-        Course result = courseService.getCourseById(1L);
+        Course result = courseService.findById(1L);
 
         // Assert
         assertNotNull(result);
