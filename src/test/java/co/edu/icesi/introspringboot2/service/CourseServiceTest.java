@@ -89,7 +89,7 @@ public class CourseServiceTest {
         // Arrange
         when(courseRepository.findById(1L)).thenReturn(Optional.empty());
         // Act y Assert
-        assertThrows(RuntimeException.class, () -> courseService.getCourseById(1L));
+        assertThrows(RuntimeException.class, () -> courseService.findById(1L));
     }
 
     @Test
