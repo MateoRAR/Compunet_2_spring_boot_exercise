@@ -1,4 +1,4 @@
 package co.edu.icesi.introspringboot2.controller;
 
-public class StudentController {
+public class EnrollmentController {
 }

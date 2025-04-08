@@ -1,5 +1,7 @@
 package co.edu.icesi.introspringboot2.service.impl;
 
+import co.edu.icesi.introspringboot2.DTO.CourseDTO;
+import co.edu.icesi.introspringboot2.Mapper.CourseMapper;
 import co.edu.icesi.introspringboot2.entity.Course;
 import co.edu.icesi.introspringboot2.entity.Enrollment;
 import co.edu.icesi.introspringboot2.repository.CourseRepository;
@@ -11,10 +13,13 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class CourseServiceImpl implements CourseService {
 
+    @Autowired
+    private CourseMapper courseMapper;
 
 
     @Autowired
@@ -24,9 +29,10 @@ public class CourseServiceImpl implements CourseService {
     private ProfessorService professorService;
 
     @Override
-    public Course createCourse(Course course) {
-        if (isAvailable(course.getName())) {
-            return courseRepository.save(course);
+    public CourseDTO createCourse(CourseDTO courseDTO) {
+        if (isAvailable(courseDTO.getName())) {
+            Course course = courseMapper.toEntity(courseDTO);
+            return courseMapper.toDTO(courseRepository.save(course));
         } else {
             throw new RuntimeException("course already exists");
         }
@@ -37,21 +43,21 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public List<Course> getCoursesByStudent_id(long student_id) {
+    public List<CourseDTO> getCoursesByStudent_id(long student_id) {
         //List<Enrollment> enrollments = enrollmentRepository.findByStudent_id(student_id);
         return null; //enrollments.stream().map(Enrollment::getCourse).toList();
     }
 
     @Override
-    public List<Course> getAllCourses() {
-        return courseRepository.findAll();
+    public List<CourseDTO> getAllCourses() {
+        return courseRepository.findAll().stream().map(courseMapper::toDTO).collect(Collectors.toList());
     }
 
     @Override
-    public Course findById(long id) {
+    public CourseDTO findById(long id) {
         Optional<Course> optCourse = courseRepository.findById(id);
         if(optCourse.isPresent()){
-            return optCourse.get();
+            return courseMapper.toDTO(optCourse.get());
         } else {
             throw new RuntimeException("Course not found" + id);
         }
@@ -60,8 +66,8 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public List<Course> findByProfessorId(Long id) {
-        return courseRepository.findByProfessor(professorService.findById(id));
+    public List<CourseDTO> findByProfessorId(Long id) {
+        return courseRepository.findByProfessor(professorService.findById(id)).stream().map(courseMapper::toDTO).collect(Collectors.toList());
     }
 
     @Override

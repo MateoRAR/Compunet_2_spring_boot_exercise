@@ -1,26 +1,26 @@
 package co.edu.icesi.introspringboot2.service;
 
-import co.edu.icesi.introspringboot2.entity.Course;
-import co.edu.icesi.introspringboot2.entity.Student;
+import co.edu.icesi.introspringboot2.DTO.CourseDTO;
+
 
 import java.util.List;
 import java.util.Optional;
 
 public interface CourseService {
 
-    Course createCourse(Course course);
+    CourseDTO createCourse(CourseDTO courseDTO);
 
-    List<Course> getCoursesByStudent_id(long student_id);
+    List<CourseDTO> getCoursesByStudent_id(long student_id);
 
-    List<Course> getAllCourses();
+    List<CourseDTO> getAllCourses();
 
     void deleteCourse(long courseId);
 
     void deleteAll();
 
-    Course findByName(String name);
+    CourseDTO findByName(String name);
 
-    Course findById(long id);
+    CourseDTO findById(long id);
 
-    List<Course> findByProfessorId(Long id);
+    List<CourseDTO> findByProfessorId(Long id);
 }

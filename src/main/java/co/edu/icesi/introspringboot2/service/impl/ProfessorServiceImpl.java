@@ -1,5 +1,7 @@
 package co.edu.icesi.introspringboot2.service.impl;
 
+import co.edu.icesi.introspringboot2.DTO.ProfessorDTO;
+import co.edu.icesi.introspringboot2.Mapper.ProfessorMapper;
 import co.edu.icesi.introspringboot2.entity.Professor;
 import co.edu.icesi.introspringboot2.repository.ProfessorRepository;
 import co.edu.icesi.introspringboot2.service.ProfessorService;
@@ -12,6 +14,9 @@ import java.util.List;
 public class ProfessorServiceImpl implements ProfessorService {
     @Autowired
     private ProfessorRepository professorRepository;
+
+    @Autowired
+    private ProfessorMapper professorMapper;
 
     @Override
     public Professor save(Professor professor) {
@@ -29,7 +34,7 @@ public class ProfessorServiceImpl implements ProfessorService {
     }
 
     @Override
-    public Professor findById(Long id) {
+    public ProfessorDTO findById(Long id) {
         if (!isAvailable(id)){
             return professorRepository.findById(id).get();
         } else {

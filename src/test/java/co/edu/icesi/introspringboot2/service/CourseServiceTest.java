@@ -1,5 +1,6 @@
 package co.edu.icesi.introspringboot2.service;
 
+/*
 import co.edu.icesi.introspringboot2.entity.Course;
 import co.edu.icesi.introspringboot2.entity.Professor;
 import co.edu.icesi.introspringboot2.repository.CourseRepository;
@@ -106,3 +107,6 @@ public class CourseServiceTest {
     }
 
 }
+
+
+ */

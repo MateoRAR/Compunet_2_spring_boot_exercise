@@ -1,5 +1,6 @@
 package co.edu.icesi.introspringboot2.integration;
 
+/*
 import co.edu.icesi.introspringboot2.entity.Enrollment;
 import co.edu.icesi.introspringboot2.entity.Student;
 import co.edu.icesi.introspringboot2.repository.EnrollmentRepository;
@@ -25,3 +26,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class StudentServiceIntegrationTest {
 
 }
+
+
+ */
