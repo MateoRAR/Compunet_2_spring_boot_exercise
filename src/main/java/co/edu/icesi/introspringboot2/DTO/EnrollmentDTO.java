@@ -1,18 +1,18 @@
 package co.edu.icesi.introspringboot2.DTO;
 
 public class EnrollmentDTO {
-    private String id;
-    private StudentDTO student;
-    private CourseDTO course;
+    private long id;
+    private long studentId;
+    private long courseId;
 
     public EnrollmentDTO(){
 
     }
 
-    public EnrollmentDTO(String id, StudentDTO student, CourseDTO course) {
+    public EnrollmentDTO(long id, long student, long course) {
         this.id = id;
-        this.student = student;
-        this.course = course;
+        this.studentId = student;
+        this.courseId = course;
     }
 
     public String getId() {
@@ -23,19 +23,19 @@ public class EnrollmentDTO {
         this.id = id;
     }
 
-    public StudentDTO getStudent() {
-        return student;
+    public long getStudentId() {
+        return studentId;
     }
 
-    public void setStudent(StudentDTO student) {
-        this.student = student;
+    public void setStudentId(long studentId) {
+        this.studentId = studentId;
     }
 
-    public CourseDTO getCourse() {
-        return course;
+    public long getCourseId() {
+        return courseId;
     }
 
-    public void setCourse(CourseDTO course) {
-        this.course = course;
+    public void setCourseId(long courseId) {
+        this.courseId = courseId;
     }
 }

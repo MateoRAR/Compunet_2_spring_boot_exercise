@@ -1,5 +1,7 @@
 package co.edu.icesi.introspringboot2.service.impl;
 
+import co.edu.icesi.introspringboot2.DTO.StudentDTO;
+import co.edu.icesi.introspringboot2.Mapper.StudentMapper;
 import co.edu.icesi.introspringboot2.entity.Student;
 import co.edu.icesi.introspringboot2.repository.EnrollmentRepository;
 import co.edu.icesi.introspringboot2.repository.StudentRepository;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -17,10 +20,14 @@ public class StudentServiceImpl implements StudentService {
     @Autowired
     private StudentRepository studentRepository;
 
+    @Autowired
+    private StudentMapper studentMapper;
+
     @Override
-    public Student createStudent(Student student) {
+    public StudentDTO createStudent(StudentDTO student) {
         if (isAvailable(student.getCode())){
-            return studentRepository.save(student);
+            Student student_e = studentMapper.toEntity(student);
+            return studentMapper.toDTO(studentRepository.save(student_e));
         } else {
             throw new RuntimeException("Student already exists");
         }
@@ -33,24 +40,24 @@ public class StudentServiceImpl implements StudentService {
 
 
     @Override
-    public List<Student> getAllStudents() {
-        return studentRepository.findAll();
+    public List<StudentDTO> getAllStudents() {
+        return studentRepository.findAll().stream().map(studentMapper::toDTO).collect(Collectors.toList());
     }
 
     @Override
-    public List<Student> findByProgram(String program) {
-        return studentRepository.findByProgram(program);
+    public List<StudentDTO> findByProgram(String program) {
+        return studentRepository.findByProgram(program).stream().map(studentMapper::toDTO).collect(Collectors.toList());
     }
 
     @Override
-    public List<Student> getStudentsByProgram(String Program) {
+    public List<StudentDTO> getStudentsByProgram(String Program) {
         return List.of();
     }
 
     @Override
-    public Student findByCode(String code) {
+    public StudentDTO findByCode(String code) {
         if (!isAvailable(code)){
-            return studentRepository.findByCode(code).get();
+            return studentMapper.toDTO(studentRepository.findByCode(code).get());
         } else {
             throw new RuntimeException("Student not found" + code);
         }

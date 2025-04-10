@@ -1,10 +1,12 @@
 package co.edu.icesi.introspringboot2.DTO;
 
+import java.util.List;
+
 public class CourseDTO {
     private long id;
     private String name;
-    private Long professorId; // solo el ID del profesor
-    private List<StudentDTO> enrolleds
+    private long professorId; // solo el ID del profesor
+    private List<Long> enrollmentIds; // solo los IDs de las inscripciones
 
     public CourseDTO() {
     }

@@ -1,9 +1,11 @@
 package co.edu.icesi.introspringboot2.service.impl;
 
 import co.edu.icesi.introspringboot2.DTO.CourseDTO;
+import co.edu.icesi.introspringboot2.DTO.ProfessorDTO;
 import co.edu.icesi.introspringboot2.Mapper.CourseMapper;
 import co.edu.icesi.introspringboot2.entity.Course;
 import co.edu.icesi.introspringboot2.entity.Enrollment;
+import co.edu.icesi.introspringboot2.entity.Professor;
 import co.edu.icesi.introspringboot2.repository.CourseRepository;
 import co.edu.icesi.introspringboot2.repository.EnrollmentRepository;
 import co.edu.icesi.introspringboot2.service.CourseService;
@@ -67,7 +69,10 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public List<CourseDTO> findByProfessorId(Long id) {
-        return courseRepository.findByProfessor(professorService.findById(id)).stream().map(courseMapper::toDTO).collect(Collectors.toList());
+
+        ProfessorDTO professorDTO = professorService.findById(id);
+
+        return courseRepository.findByProfessor(professorDTO.getId()).stream().map(courseMapper::toDTO).collect(Collectors.toList());
     }
 
     @Override
@@ -85,9 +90,9 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public Course findByName(String name) {
+    public CourseDTO findByName(String name) {
         if (!isAvailable(name)){
-            return courseRepository.findByName(name).get();
+            return courseMapper.toDTO(courseRepository.findByName(name).get());
         } else {
             throw new RuntimeException("Course not found" + name);
         }

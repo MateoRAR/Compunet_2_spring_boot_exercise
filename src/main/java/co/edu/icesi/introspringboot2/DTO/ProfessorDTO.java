@@ -3,24 +3,24 @@ package co.edu.icesi.introspringboot2.DTO;
 import java.util.List;
 
 public class ProfessorDTO {
-    private String id;
+    private long id;
     private String name;
-    private List<CourseDTO> courses;
+    private List<String> coursesIds;
 
     public ProfessorDTO() {
     }
 
-    public ProfessorDTO(String id, String name, List<CourseDTO> courses) {
+    public ProfessorDTO(long id, String name, List<String> courses) {
         this.id = id;
         this.name = name;
-        this.courses = courses;
+        this.coursesIds = courses;
     }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -32,11 +32,11 @@ public class ProfessorDTO {
         this.name = name;
     }
 
-    public List<CourseDTO> getCourses() {
-        return courses;
+    public List<String> getCoursesIds() {
+        return coursesIds;
     }
 
-    public void setCourses(List<CourseDTO> courses) {
-        this.courses = courses;
+    public void setCoursesIds(List<String> coursesIds) {
+        this.coursesIds = coursesIds;
     }
 }

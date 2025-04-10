@@ -19,8 +19,13 @@ public class ProfessorServiceImpl implements ProfessorService {
     private ProfessorMapper professorMapper;
 
     @Override
-    public Professor save(Professor professor) {
-        return professorRepository.save(professor);
+    public ProfessorDTO save(ProfessorDTO professor) {
+        if (isAvailable(professor.getId())){
+            Professor professor_e = professorMapper.toEntity(professor);
+            return professorMapper.toDTO(professorRepository.save(professor_e));
+        } else {
+            throw new RuntimeException("Professor already exists");
+        }
     }
 
     @Override
@@ -29,14 +34,14 @@ public class ProfessorServiceImpl implements ProfessorService {
     }
 
     @Override
-    public List<Professor> getAllProfessors() {
-        return professorRepository.findAll();
+    public List<ProfessorDTO> getAllProfessors() {
+        return professorRepository.findAll().stream().map(professorMapper::toDTO).toList();
     }
 
     @Override
     public ProfessorDTO findById(Long id) {
         if (!isAvailable(id)){
-            return professorRepository.findById(id).get();
+            return professorMapper.toDTO(professorRepository.findById(id).get());
         } else {
             throw new RuntimeException("Professor not found" + id);
         }
