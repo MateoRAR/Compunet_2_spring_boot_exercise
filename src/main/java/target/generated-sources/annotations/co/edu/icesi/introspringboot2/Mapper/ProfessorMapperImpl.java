@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-04-10T14:56:12-0500",
+    date = "2025-04-22T15:07:53-0500",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21.0.6 (Amazon.com Inc.)"
 )
 @Component
@@ -21,11 +21,23 @@ public class ProfessorMapperImpl implements ProfessorMapper {
 
         Professor professor = new Professor();
 
-        if ( professorDTO.getId() != null ) {
-            professor.setId( Long.parseLong( professorDTO.getId() ) );
-        }
+        professor.setId( professorDTO.getId() );
         professor.setName( professorDTO.getName() );
 
         return professor;
+    }
+
+    @Override
+    public ProfessorDTO toDTO(Professor professor) {
+        if ( professor == null ) {
+            return null;
+        }
+
+        ProfessorDTO professorDTO = new ProfessorDTO();
+
+        professorDTO.setId( professor.getId() );
+        professorDTO.setName( professor.getName() );
+
+        return professorDTO;
     }
 }

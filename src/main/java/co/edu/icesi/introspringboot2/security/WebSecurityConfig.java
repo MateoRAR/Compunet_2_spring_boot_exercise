@@ -1,5 +1,7 @@
 package co.edu.icesi.introspringboot2.security;
 
+import co.edu.icesi.introspringboot2.filter.JwtAutenticationFilter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,12 +17,15 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {
 
-
+    @Autowired
+    private JwtAutenticationFilter jwtAutenticationFilter;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -40,17 +45,15 @@ public class WebSecurityConfig {
                                 .requestMatchers("/course").hasAnyRole("STUDENT", "PROFESOR")
                                 .requestMatchers("/student").hasAnyRole("PROFESSOR")
                                 .anyRequest().authenticated()
-                ).formLogin(login -> login
-                        .loginPage("/login")
-                        .defaultSuccessUrl("/home", true)
-                        .permitAll()
-                ).logout(logout -> logout
-                        .logoutUrl("/logout")
-                        .logoutSuccessUrl("/login?logout")
-                        .invalidateHttpSession(true)
-                        .deleteCookies("JSESSIONID")
-                        .permitAll()
+                ).exceptionHandling(eh -> eh
+                        .accessDeniedHandler((request, response, accessDeniedException) -> {
+                            response.setStatus(403);
+                            response.setContentType("application/json");
+                            response.getWriter().write("{\"error\": \"You don't have permission to access this resource\"}");
+                        })
                 );
+
+        http.addFilterBefore(jwtAutenticationFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 
