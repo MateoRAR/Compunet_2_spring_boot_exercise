@@ -4,11 +4,6 @@ import co.edu.icesi.introspringboot2.DTO.CourseDTO;
 import co.edu.icesi.introspringboot2.DTO.EnrollmentDTO;
 import co.edu.icesi.introspringboot2.DTO.StudentDTO;
 import co.edu.icesi.introspringboot2.Mapper.EnrollmentMapper;
-import co.edu.icesi.introspringboot2.Mapper.ProfessorMapper;
-import co.edu.icesi.introspringboot2.Mapper.StudentMapper;
-import co.edu.icesi.introspringboot2.entity.Course;
-import co.edu.icesi.introspringboot2.entity.Enrollment;
-import co.edu.icesi.introspringboot2.entity.Student;
 import co.edu.icesi.introspringboot2.repository.EnrollmentRepository;
 import co.edu.icesi.introspringboot2.service.CourseService;
 import co.edu.icesi.introspringboot2.service.EnrollmentService;
@@ -48,12 +43,20 @@ public class EnrollmentServiceImpl implements EnrollmentService {
     @Override
     public List<EnrollmentDTO> findByCourse(String name) {
         CourseDTO course = courseService.findByName(name);
-        return enrollmentRepository.findByCourse(course.getName()).stream().map(enrollment -> enrollmentMapper.toDTO(enrollment)).collect(Collectors.toList());
+        return enrollmentRepository.findByCourseName(course.getName()).stream().map(enrollment -> enrollmentMapper.toDTO(enrollment)).collect(Collectors.toList());
     }
 
     @Override
     public List<EnrollmentDTO> findByStudent(String code){
         StudentDTO student = studentService.findByCode(code);
-        return enrollmentRepository.findByStudent(student.getCode()).stream().map(enrollment -> enrollmentMapper.toDTO(enrollment)).collect(Collectors.toList());
+        return enrollmentRepository.findByStudentCode(student.getCode()).stream().map(enrollment -> enrollmentMapper.toDTO(enrollment)).collect(Collectors.toList());
     }
+
+    @Override
+    public List<EnrollmentDTO> getAllEnrollments() {
+        return enrollmentRepository.findAll().stream().map(enrollment ->
+                enrollmentMapper.toDTO(enrollment)).collect(Collectors.toList());
+    }
+
+
 }

@@ -11,10 +11,19 @@ public class CourseDTO {
     public CourseDTO() {
     }
 
-    public CourseDTO(long id, String name, Long professorId) {
+    public CourseDTO(long id, String name, Long professorId, List<Long> enrollmentIds) {
         this.id = id;
         this.name = name;
         this.professorId = professorId;
+        this.enrollmentIds = enrollmentIds;
+    }
+
+    public List<Long> getEnrollmentIds() {
+        return enrollmentIds;
+    }
+
+    public void setEnrollmentIds(List<Long> enrollmentIds) {
+        this.enrollmentIds = enrollmentIds;
     }
 
     public long getId() {

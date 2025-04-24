@@ -1,19 +1,31 @@
 package co.edu.icesi.introspringboot2.DTO;
 
+import java.util.List;
+
 public class StudentDTO {
     public long id;
     public String name;
     public String code;
     public String program;
+    public List<Long> enrolledCourses;
 
     public StudentDTO() {
     }
 
-    public StudentDTO(long id, String name, String code, String program) {
+    public StudentDTO(long id, String name, String code, String program, List<Long> enrolledCourses) {
         this.id = id;
         this.name = name;
         this.code = code;
         this.program = program;
+        this.enrolledCourses = enrolledCourses;
+    }
+
+    public List<Long> getEnrolledCourses() {
+        return enrolledCourses;
+    }
+
+    public void setEnrolledCourses(List<Long> enrolledCourses) {
+        this.enrolledCourses = enrolledCourses;
     }
 
     public long getId() {

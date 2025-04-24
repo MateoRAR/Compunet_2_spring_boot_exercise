@@ -4,6 +4,7 @@ import co.edu.icesi.introspringboot2.filter.JwtAutenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -25,6 +26,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class WebSecurityConfig {
 
     @Autowired
+    @Lazy
     private JwtAutenticationFilter jwtAutenticationFilter;
 
     @Bean
@@ -42,8 +44,8 @@ public class WebSecurityConfig {
                                 .requestMatchers("/css/**").permitAll()
                                 .requestMatchers("/sign_up").permitAll()
                                 .requestMatchers("/api/v1/auth/login").permitAll()
-                                .requestMatchers("/course").hasAnyRole("STUDENT", "PROFESOR")
-                                .requestMatchers("/student").hasAnyRole("PROFESSOR")
+                                .requestMatchers("/api/v1/course").hasAnyRole("STUDENT", "PROFESSOR")
+                                .requestMatchers("/api/v1/student", "/api/v1/professor", "/api/v1/enrollment" ).hasAnyRole("PROFESSOR")
                                 .anyRequest().authenticated()
                 ).exceptionHandling(eh -> eh
                         .accessDeniedHandler((request, response, accessDeniedException) -> {

@@ -12,4 +12,5 @@ public interface EnrollmentService {
      void enroll(String code, String name);
      List<EnrollmentDTO> findByCourse(String name);
      List<EnrollmentDTO> findByStudent(String code);
+     List<EnrollmentDTO> getAllEnrollments();
 }

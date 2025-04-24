@@ -5,12 +5,12 @@ import java.util.List;
 public class ProfessorDTO {
     private long id;
     private String name;
-    private List<String> coursesIds;
+    private List<Long> coursesIds;
 
     public ProfessorDTO() {
     }
 
-    public ProfessorDTO(long id, String name, List<String> courses) {
+    public ProfessorDTO(long id, String name, List<Long> courses) {
         this.id = id;
         this.name = name;
         this.coursesIds = courses;
@@ -32,11 +32,11 @@ public class ProfessorDTO {
         this.name = name;
     }
 
-    public List<String> getCoursesIds() {
+    public List<Long> getCoursesIds() {
         return coursesIds;
     }
 
-    public void setCoursesIds(List<String> coursesIds) {
+    public void setCoursesIds(List<Long> coursesIds) {
         this.coursesIds = coursesIds;
     }
 }

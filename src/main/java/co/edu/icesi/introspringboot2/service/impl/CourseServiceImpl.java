@@ -72,7 +72,7 @@ public class CourseServiceImpl implements CourseService {
 
         ProfessorDTO professorDTO = professorService.findById(id);
 
-        return courseRepository.findByProfessor(professorDTO.getId()).stream().map(courseMapper::toDTO).collect(Collectors.toList());
+        return courseRepository.findByProfessorId(professorDTO.getId()).stream().map(courseMapper::toDTO).collect(Collectors.toList());
     }
 
     @Override
