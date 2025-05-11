@@ -1,8 +1,10 @@
 package co.edu.icesi.introspringboot2.service.impl;
 
 import co.edu.icesi.introspringboot2.DTO.CourseDTO;
+import co.edu.icesi.introspringboot2.DTO.EnrollmentDTO;
 import co.edu.icesi.introspringboot2.DTO.ProfessorDTO;
 import co.edu.icesi.introspringboot2.Mapper.CourseMapper;
+import co.edu.icesi.introspringboot2.Mapper.EnrollmentMapper;
 import co.edu.icesi.introspringboot2.entity.Course;
 import co.edu.icesi.introspringboot2.entity.Enrollment;
 import co.edu.icesi.introspringboot2.entity.Professor;
@@ -11,6 +13,10 @@ import co.edu.icesi.introspringboot2.repository.EnrollmentRepository;
 import co.edu.icesi.introspringboot2.service.CourseService;
 import co.edu.icesi.introspringboot2.service.ProfessorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,6 +35,8 @@ public class CourseServiceImpl implements CourseService {
 
     @Autowired
     private ProfessorService professorService;
+    @Autowired
+    private EnrollmentMapper enrollmentMapper;
 
     @Override
     public CourseDTO createCourse(CourseDTO courseDTO) {
@@ -44,11 +52,6 @@ public class CourseServiceImpl implements CourseService {
         return courseRepository.findByName(name).isEmpty();
     }
 
-    @Override
-    public List<CourseDTO> getCoursesByStudent_id(long student_id) {
-        //List<Enrollment> enrollments = enrollmentRepository.findByStudent_id(student_id);
-        return null; //enrollments.stream().map(Enrollment::getCourse).toList();
-    }
 
     @Override
     public List<CourseDTO> getAllCourses() {
@@ -73,6 +76,12 @@ public class CourseServiceImpl implements CourseService {
         ProfessorDTO professorDTO = professorService.findById(id);
 
         return courseRepository.findByProfessorId(professorDTO.getId()).stream().map(courseMapper::toDTO).collect(Collectors.toList());
+    }
+
+    @Override
+    public Page<CourseDTO> searchCoursesByName(String name, int page, int size, String sortBy) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
+        return courseRepository.findByNameContainingIgnoreCase(name, pageable).map(courseMapper::toDTO);
     }
 
     @Override

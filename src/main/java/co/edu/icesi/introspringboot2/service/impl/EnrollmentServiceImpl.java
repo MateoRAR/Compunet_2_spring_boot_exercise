@@ -3,7 +3,10 @@ package co.edu.icesi.introspringboot2.service.impl;
 import co.edu.icesi.introspringboot2.DTO.CourseDTO;
 import co.edu.icesi.introspringboot2.DTO.EnrollmentDTO;
 import co.edu.icesi.introspringboot2.DTO.StudentDTO;
+import co.edu.icesi.introspringboot2.Mapper.CourseMapper;
 import co.edu.icesi.introspringboot2.Mapper.EnrollmentMapper;
+import co.edu.icesi.introspringboot2.Mapper.StudentMapper;
+import co.edu.icesi.introspringboot2.entity.Enrollment;
 import co.edu.icesi.introspringboot2.repository.EnrollmentRepository;
 import co.edu.icesi.introspringboot2.service.CourseService;
 import co.edu.icesi.introspringboot2.service.EnrollmentService;
@@ -27,35 +30,53 @@ public class EnrollmentServiceImpl implements EnrollmentService {
 
     @Autowired
     private StudentService studentService;
+
     @Autowired
     private EnrollmentMapper enrollmentMapper;
+
+    @Autowired
+    private CourseMapper courseMapper;
+
+    @Autowired
+    private StudentMapper studentMapper;
 
 
     @Override
     @Transactional
-    public void enroll(String code, String name) {
-        StudentDTO student = studentService.findByCode(code);
-        CourseDTO course = courseService.findByName(name);
-        EnrollmentDTO enrollment = new EnrollmentDTO(1,student.getId(), course.getId());
-        enrollmentRepository.save(enrollmentMapper.toEntity(enrollment));
-    }
+    public EnrollmentDTO enroll(long studentId, long courseId) {
 
-    @Override
-    public List<EnrollmentDTO> findByCourse(String name) {
-        CourseDTO course = courseService.findByName(name);
-        return enrollmentRepository.findByCourseName(course.getName()).stream().map(enrollment -> enrollmentMapper.toDTO(enrollment)).collect(Collectors.toList());
-    }
+        StudentDTO student = studentService.findById(studentId);
+        CourseDTO course = courseService.findById(courseId);
 
-    @Override
-    public List<EnrollmentDTO> findByStudent(String code){
-        StudentDTO student = studentService.findByCode(code);
-        return enrollmentRepository.findByStudentCode(student.getCode()).stream().map(enrollment -> enrollmentMapper.toDTO(enrollment)).collect(Collectors.toList());
+        Enrollment enrollment = new Enrollment();
+        enrollment.setStudent(studentMapper.toEntity(student));
+        enrollment.setCourse(courseMapper.toEntity(course));
+        return enrollmentMapper.toDTO(enrollmentRepository.save(enrollment));
     }
 
     @Override
     public List<EnrollmentDTO> getAllEnrollments() {
         return enrollmentRepository.findAll().stream().map(enrollment ->
                 enrollmentMapper.toDTO(enrollment)).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<EnrollmentDTO> findByCourseId(long courseId) {
+        return enrollmentRepository.findByCourseId(courseId).stream().map(
+                enrollment -> enrollmentMapper.toDTO(enrollment)).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<EnrollmentDTO> findByStudentId(long studentId) {
+        return enrollmentRepository.findByStudentId(studentId).stream().map(
+                enrollment -> enrollmentMapper.toDTO(enrollment)).collect(Collectors.toList());
+    }
+
+    @Override
+    public EnrollmentDTO deleteEnrollment(long id) {
+        Enrollment enrollment = enrollmentRepository.findById(id).orElseThrow(() -> new RuntimeException("Enrollment not found" + id));
+        enrollmentRepository.delete(enrollment);
+        return enrollmentMapper.toDTO(enrollment);
     }
 
 

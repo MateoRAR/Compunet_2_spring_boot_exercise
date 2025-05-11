@@ -6,9 +6,7 @@ import co.edu.icesi.introspringboot2.service.EnrollmentService;
 import co.edu.icesi.introspringboot2.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,5 +20,18 @@ public class EnrollmentController {
     @GetMapping
     public ResponseEntity<List<EnrollmentDTO>> getAllCourses() {
         return ResponseEntity.status(200).body(enrollmentService.getAllEnrollments());
+    }
+
+    @PostMapping
+    public ResponseEntity<EnrollmentDTO> createEnrollment(EnrollmentDTO enrollmentDTO) {
+        long studentId = enrollmentDTO.getStudentId();
+        long courseId = enrollmentDTO.getCourseId();
+
+        return ResponseEntity.status(201).body(enrollmentService.enroll(studentId, courseId));
+    }
+
+    @DeleteMapping
+    public ResponseEntity<EnrollmentDTO> deleteEnrollment(@RequestParam long id) {
+        return ResponseEntity.status(200).body(enrollmentService.deleteEnrollment(id));
     }
 }

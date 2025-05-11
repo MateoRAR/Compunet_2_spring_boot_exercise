@@ -7,9 +7,8 @@ import java.util.List;
 
 public interface EnrollmentRepository extends JpaRepository<Enrollment, Long> {
 
-    List<Enrollment> findEnrollmentByStudent_id(Long student_id);
-    List<Enrollment> findEnrollmentByCourse_id(Long course_id);
-    List<Enrollment> findByStudent_id(long studentId);
+    List<Enrollment> findByStudentId(long studentId);
+    List<Enrollment> findByCourseId(long courseId);
 
     List<Enrollment> findByCourseName(String name);
 

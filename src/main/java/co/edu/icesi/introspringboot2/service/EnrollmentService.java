@@ -9,8 +9,9 @@ import co.edu.icesi.introspringboot2.DTO.StudentDTO;
 import java.util.List;
 
 public interface EnrollmentService {
-     void enroll(String code, String name);
-     List<EnrollmentDTO> findByCourse(String name);
-     List<EnrollmentDTO> findByStudent(String code);
+     EnrollmentDTO enroll(long studentId, long courseId);
      List<EnrollmentDTO> getAllEnrollments();
+     List<EnrollmentDTO> findByCourseId(long courseId);
+     List<EnrollmentDTO> findByStudentId(long studentId);
+     EnrollmentDTO deleteEnrollment(long id);
 }
