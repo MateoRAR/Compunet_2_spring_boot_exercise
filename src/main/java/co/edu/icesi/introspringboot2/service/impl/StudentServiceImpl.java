@@ -53,7 +53,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public StudentDTO findById(Long id) {
-        return studentMapper.toDTO(studentRepository.findById(id).orElseThrow( () -> new RuntimeException("Student not found" + id)));
+        return studentMapper.toDTO(studentRepository.findById(id).orElseThrow( () -> new RuntimeException("Student not found " + id)));
     }
 
 
@@ -68,7 +68,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public StudentDTO updateStudent(StudentDTO studentDTO) {
-        if (!isAvailable(studentDTO.getCode())){
+        if (!isAvailable(studentDTO.getCode()) || studentRepository.findById(studentDTO.getId()).isPresent()){
             Student student = studentMapper.toEntity(studentDTO);
             return studentMapper.toDTO(studentRepository.save(student));
         } else {
@@ -77,9 +77,9 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Page<StudentDTO> findAll(long id, int page, int size, String sortBy) {
+    public Page<StudentDTO> findAll(int page, int size, String sortBy) {
         Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
-        Page<Student> pageStudents = studentRepository.findPageById(id, pageable);
+        Page<Student> pageStudents = studentRepository.findAll(pageable);
         return pageStudents.map(studentMapper::toDTO);
     }
 

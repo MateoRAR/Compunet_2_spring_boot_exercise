@@ -5,8 +5,8 @@ import java.util.List;
 public class CourseDTO {
     private long id;
     private String name;
-    private long professorId; // solo el ID del profesor
-    private List<Long> enrollmentIds; // solo los IDs de las inscripciones
+    private long professorId;
+    private List<Long> enrollmentIds;
 
     public CourseDTO() {
     }

@@ -50,8 +50,8 @@ public class WebSecurityConfig {
                                 .requestMatchers("/css/**").permitAll()
                                 .requestMatchers("/sign_up").permitAll()
                                 .requestMatchers("/api/v1/auth/login").permitAll()
-                                .requestMatchers("/api/v1/course").hasAnyRole("STUDENT", "PROFESSOR")
-                                .requestMatchers("/api/v1/student", "/api/v1/professor", "/api/v1/enrollment" ).hasAnyRole("PROFESSOR")
+                                .requestMatchers("/api/v1/course/**").hasAnyRole("STUDENT", "PROFESSOR")
+                                .requestMatchers("/api/v1/student/**", "/api/v1/professor/**", "/api/v1/enrollment/**" ).hasAnyRole("PROFESSOR")
                                 .anyRequest().authenticated()
                 ).exceptionHandling(eh -> eh
                         .accessDeniedHandler((request, response, accessDeniedException) -> {

@@ -7,25 +7,25 @@ public class StudentDTO {
     public String name;
     public String code;
     public String program;
-    public List<Long> enrolledCourses;
+    public List<Long> enrollmentsIds;
 
     public StudentDTO() {
     }
 
-    public StudentDTO(long id, String name, String code, String program, List<Long> enrolledCourses) {
+    public StudentDTO(long id, String name, String code, String program, List<Long> enrollmentsIds) {
         this.id = id;
         this.name = name;
         this.code = code;
         this.program = program;
-        this.enrolledCourses = enrolledCourses;
+        this.enrollmentsIds = enrollmentsIds;
     }
 
-    public List<Long> getEnrolledCourses() {
-        return enrolledCourses;
+    public List<Long> getEnrollmentsIds() {
+        return enrollmentsIds;
     }
 
-    public void setEnrolledCourses(List<Long> enrolledCourses) {
-        this.enrolledCourses = enrolledCourses;
+    public void setEnrollmentsIds(List<Long> enrolledCourses) {
+        this.enrollmentsIds = enrolledCourses;
     }
 
     public long getId() {

@@ -15,5 +15,5 @@ public interface StudentService {
     StudentDTO findById(Long id);
     StudentDTO findByCode(String code);
     StudentDTO updateStudent(StudentDTO studentDTO);
-    public Page<StudentDTO> findAll(long id, int page, int size, String sortBy);
+    public Page<StudentDTO> findAll(int page, int size, String sortBy);
 }

@@ -55,15 +55,15 @@ public class StudentController {
     }
 
     @GetMapping("/program")
-    public ResponseEntity<List<StudentDTO>> getAllStudentsByProgram(@RequestParam String program){
-        List<StudentDTO> students = studentService.findByProgram(program);
+    public ResponseEntity<List<StudentDTO>> getAllStudentsByProgram(@RequestParam String name){
+        List<StudentDTO> students = studentService.findByProgram(name);
         return ResponseEntity.status(200).body(students);
     }
 
     @GetMapping("/ordered")
-    public Page<StudentDTO> getStudentsByProgram(@RequestParam long id, @RequestParam(defaultValue = "0") int page, @RequestParam(required = false) Integer size, @RequestParam(defaultValue = "id") String sortBy) {
+    public ResponseEntity<Page<StudentDTO>> getPageStudents(@RequestParam(defaultValue = "0") int page, @RequestParam(required = false) Integer size, @RequestParam(defaultValue = "id") String sortBy) {
         int effectiveSize = (size != null) ? size : pageSize;
-        return studentService.findAll(id, page, effectiveSize, sortBy);
+        return ResponseEntity.status(200).body(studentService.findAll(page, effectiveSize, sortBy));
     }
 
 

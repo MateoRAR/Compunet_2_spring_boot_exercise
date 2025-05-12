@@ -23,7 +23,7 @@ public class EnrollmentController {
     }
 
     @PostMapping
-    public ResponseEntity<EnrollmentDTO> createEnrollment(EnrollmentDTO enrollmentDTO) {
+    public ResponseEntity<EnrollmentDTO> createEnrollment(@RequestBody EnrollmentDTO enrollmentDTO) {
         long studentId = enrollmentDTO.getStudentId();
         long courseId = enrollmentDTO.getCourseId();
 

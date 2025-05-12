@@ -63,8 +63,8 @@ public class CourseController {
     }
 
     @GetMapping("/search")
-    public Page<CourseDTO> searchCoursesByName(@RequestParam String name, @RequestParam(defaultValue = "0") int page, @RequestParam(required = false) Integer size, @RequestParam(defaultValue = "id") String sortBy) {
+    public ResponseEntity<Page<CourseDTO>> searchCoursesByName(@RequestParam String name, @RequestParam(defaultValue = "0") int page, @RequestParam(required = false) Integer size, @RequestParam(defaultValue = "id") String sortBy) {
         int effectiveSize = (size != null) ? size : pageSize;
-        return courseService.searchCoursesByName(name, page, effectiveSize, sortBy);
+        return ResponseEntity.status(200).body(courseService.searchCoursesByName(name, page, effectiveSize, sortBy));
     }
 }
