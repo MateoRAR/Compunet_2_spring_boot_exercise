@@ -30,8 +30,27 @@ public class EnrollmentController {
         return ResponseEntity.status(201).body(enrollmentService.enroll(studentId, courseId));
     }
 
+    /*
     @DeleteMapping
-    public ResponseEntity<EnrollmentDTO> deleteEnrollment(@RequestParam long id) {
+    public ResponseEntity<EnrollmentDTO> deleteEnrollmentById(@RequestParam long id) {
         return ResponseEntity.status(200).body(enrollmentService.deleteEnrollment(id));
     }
+     */
+
+    @DeleteMapping
+    public ResponseEntity<EnrollmentDTO> deleteEnrollmentByCourseId_StudentId(@RequestParam long courseId, @RequestParam long studentId) {
+        try {
+            List<EnrollmentDTO> enrollments = enrollmentService.findByStudentId(studentId);
+            for (EnrollmentDTO enrollment : enrollments) {
+                if (enrollment.getCourseId() == courseId) {
+                    return ResponseEntity.status(200).body(enrollmentService.deleteEnrollment(enrollment.getId()));
+                }
+            }
+            return ResponseEntity.status(404).body(null);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(500).body(null);
+        }
+    }
+
 }
